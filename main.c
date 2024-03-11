@@ -16,7 +16,21 @@ t_sortedList * createList(int size) {
     return list;
 }
 
-int main(int argc, char *argv[]) {
+void addList(t_sortedList * list, int elem) {
+    elem = 2;
+    list->array[0] = elem;
+    list->length++;
+}
 
+void printList(t_sortedList * list) {
+    for(int i = 0; i <  list->length; i++) {
+        printf("%d", list->array[i]);
+    }
+}
+
+int main() {
+    t_sortedList * list = createList(3);
+    addList(list, 2);
+    printList(list);
     return 0;
 }
