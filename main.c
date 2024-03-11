@@ -12,14 +12,23 @@ t_sortedList * createList(int size) {
     // ponteiro stack -> struct na heap
     list->maxSize = size;
     list->length = 0;
-    list->array = (int *) calloc(sizeof(int), list->maxSize);
+    list->array = (int *) malloc(sizeof(int) * list->maxSize);
     return list;
 }
 
 void addList(t_sortedList * list, int elem) {
-    elem = 2;
-    list->array[0] = elem;
-    list->length++;
+    int index = 0;
+    for(int k = 0; k < list->length; k++) {
+        if(elem > list->array[k]) {
+            index = k; //se o elemento não for o menor salva o índice onde deve ser inserido
+            break;
+        } else {
+            index = k + 1; //se o elem for o menor do array, salva o último indice
+        }
+    }
+    for(int i = list->length; i >= index; i--) {list->array[i] = list->array[i - 1];} //vai do ultimo ate o indice
+    list->array[index] = elem; //depois de liberar espaco adiciona o elemento no indice
+    list->length++; //incrementa o tamanho
 }
 
 void printList(t_sortedList * list) {
@@ -28,9 +37,20 @@ void printList(t_sortedList * list) {
     }
 }
 
+void descendList(t_sortedList * list) {
+    
+}
+
 int main() {
     t_sortedList * list = createList(3);
     addList(list, 2);
+    addList(list, 5);
+    addList(list, 1);
+    addList(list, 3);
+    addList(list, 9);
+    addList(list, 0);
     printList(list);
+    free(list->array);
+    free(list);
     return 0;
 }
