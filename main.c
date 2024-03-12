@@ -19,16 +19,12 @@ t_sortedList * createList(int size) {
 void addList(t_sortedList * list, int elem) {
     int index = 0;
     for(int k = 0; k < list->length; k++) {
-        if(elem > list->array[k]) {
-            index = k; //se o elemento não for o menor salva o índice onde deve ser inserido
-            break;
-        } else {
-            index = k + 1; //se o elem for o menor do array, salva o último indice
-        }
+        if(elem > list->array[k]) {index = k; break;} 
+        else {index = k + 1;}
     }
-    for(int i = list->length; i >= index; i--) {list->array[i] = list->array[i - 1];} //vai do ultimo ate o indice
-    list->array[index] = elem; //depois de liberar espaco adiciona o elemento no indice
-    list->length++; //incrementa o tamanho
+    for(int i = list->length; i >= index; i--) {list->array[i] = list->array[i - 1];}
+    list->array[index] = elem;
+    list->length++;
 }
 
 void printList(t_sortedList * list) {
