@@ -1,1 +1,1 @@
-    addList(list, 5);
+printf("%d ", j);
