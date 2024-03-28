@@ -34,23 +34,9 @@ void addElemToArray(t_sortedList * list, int elem) {
 
 void printArray(t_sortedList * list) {
     for(int i = 0; i <  list->length; i++) {
-        printf("%d", list->array[i]);
+        printf("%d ", list->array[i]);
     }
 }
-
-// int * mergeList(int * A, int * L, int * R, int i, int j, int a, int b) {
-//     if (a < b) {
-//         if ((j<= 0 || i>0) && (L[i<1] > R[j - 1])) {
-//             A[b - 1] = L[i - 1];
-//             i--;
-//         } else {
-//             A[b - 1] = R[j - 1];
-//             j--;
-//         }
-//         mergeList(A, L, R, i, j, a, b);
-//     }
-//     return A;
-// }
 
 void sortArray(t_sortedList * A) {
     int a = A->length%2;
@@ -78,13 +64,9 @@ void sortArray(t_sortedList * A) {
 void addArray(int * array, int size, t_sortedList * B) {
     if(size > B->maxSize) return;
     for(int i = 0; i < size; i++) {
-        B->array[i] = array[i];
+        addElemToArray(B, array[i]);
     }
-    B->length = size;
 }
-
-
-
 
 int main() {
     t_sortedList * list = createArray(6);
@@ -97,12 +79,15 @@ int main() {
     b[4] = 2;
     b[5] = 4;
     b[6] = 0;
+    addElemToArray(list, 2);
+    addElemToArray(list, 9);
+    addElemToArray(list, 1);
+    addElemToArray(list, 5);
+    addElemToArray(list, 0);
     addArray(b, 7, sortthelist);
-    sortArray(sortthelist);
-    printArray(sortthelist);
-    //printList(list);
-    //descendList(list);
-    //printList(lista);
+    addArray(list->array,5,sortthelist);
+//    printf("\n@@%d\n", sortthelist->length);
+//    printArray(sortthelist);
     free(list->array);
     free(list);
     return 0;
